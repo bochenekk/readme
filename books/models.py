@@ -36,6 +36,9 @@ class Author(models.Model):
         help_text = '',
     )
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
 
 class Book(models.Model):
     # tytuł
@@ -98,5 +101,8 @@ class Category(models.Model):
         verbose_name = 'Description',
         help_text = '',
     )
+
+    def __str__(self):
+        return self.name
 
 
