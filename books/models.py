@@ -29,6 +29,7 @@ class Author(models.Model):
     )
     web_site = models.URLField(
         # max_length jest domyślnie ustawiony dla URLField na 200
+        # bazuje na CharField
         null = False,
         blank = True,
         default = '',
@@ -58,13 +59,16 @@ class Book(models.Model):
     author = models.ForeignKey(
         Author, on_delete=models.PROTECT, # zachowanie bazy danych przy usuwaniu autora,
         # gdy są do niego przypisane jakieś książki - nie da się usunąć
+        # dodaje automatycznie Author.book_set - relation manager
+        # a1.book_set.filter(pages__lt=100) , a1 - instancja Author
         null = False,
         blank = False,
         verbose_name = 'Author',
         help_text = '',
     )
     categories = models.ManyToManyField(
-        'Category',
+        'Category', # w ciapkach bo zdefiniowane dopiero poniżej, ale dzięki
+        # temu interpreter jest w stanie mimo wszystko stworzyć relację
         blank = False, # wymusi przypisanie książki do co najmniej jednej kategorii
         verbose_name = "Categories",
         help_text = '',
@@ -84,6 +88,22 @@ class Book(models.Model):
         help_text = '',
     )
 
+    cover = models.ImageField(
+        # typ CharField
+        blank = True,
+        null = False,
+        default = '',
+        verbose_name = 'Cover image',
+        help_text = '',
+    )
+
+    def get_categories(self):
+        return "\n".join([str(p) for p in self.categories.all()])
+
+
+    def __str__(self):
+        return self.title
+
 
 class Category(models.Model):
     # nazwa
@@ -93,8 +113,9 @@ class Category(models.Model):
         max_length=50,
         null = False,
         blank = False,
-        verbose_name = 'Category',
         help_text = '',
+        verbose_name = 'Category',
+
     )
     description = models.TextField(
         blank = True,
@@ -104,5 +125,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+
+
 
 
