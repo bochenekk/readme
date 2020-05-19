@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load comments %}
+
+{% block content %}
+
+<section class="detail-view">
+    <div class="container">
+
+        <h2>{{ title }}</h2>
+        <p class="name">{{ author }}</p>
+
+        <table>
+        <tr>
+            <th>Name</th>
+            <td>{{ author.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Last name</th>
+            <td>{{ author.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Born</th>
+            <td>{{ author.birth_date|default:"&mdash;" }}</td>
+        </tr>
+        <tr>
+            <th>Website</th>
+            <td>{{ author.web_site|default:"&mdash;"|urlize }}</td>
+        </tr>
+        </table>
+
+        <p>List of books:</p>
+
+        <ul>
+            {% for book in author.book_set.all %}
+            <li><a href="{% url 'books:book-details' book.pk %}">{{ book }}</a></li>
+            {% endfor %}
+        </ul>
+
+
+        <hr>
+        <h3>Comments</h3>
+        <!-- {% get_comment_form for object as form %}
+        <p>{{form.name.label}}</p>
+        <p>{{form.name}}</p> -->
+        <!-- {{form.email.label}}{{form.email}} -->
+        {% render_comment_form for author %}
+        {% render_comment_list for author %}
+
+    </div>
+</section>
+
+{% endblock %}

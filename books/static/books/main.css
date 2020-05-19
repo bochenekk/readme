@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    /* font-family: "Montserrat"; */
+    /* $main-font: 'Poppins'; */
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #69A2AD;
+    /* background-color: #8991DC; */
+    color: #FFFFFF;
+    z-index: 100;
+    font-family: 'Raleway';
+}
+
+.nav-bar .container {
+    /* top: 0; */
+    width: 1170px;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    /* min-height: 100vh; */
+}
+
+.nav-bar .container .logo img {
+    /* display: block; */
+    width: 160px;
+    z-index: 101;
+}
+
+.nav-bar .container .menu {
+    display: block;
+}
+
+.nav-bar .container .menu li {
+
+    display: inline-block;
+    margin-left: 60px;
+    font-size: 18px;
+}
+
+.nav-bar .container .menu li:first-child {
+    margin: 0;
+}
+
+.nav-bar .container .menu li a {
+    color: #FFFFFF;
+}
+
+.login {
+    /* min-height: 100vh; */
+    padding: 80px 0 0;
+    background-color: #FFFFFF;
+    font-family: 'Raleway';
+}
+
+.login .container {
+    width: 1170px;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.login .container p {
+    top: 15px;
+    right: 0;
+    margin-left: 60px;
+}
+
+/* nei wykorzystuję klas dla p */
+
+.login .container p a {
+    color: #2F3676;
+
+}
+
+.container {
+    width: 1170px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.container h1 {
+    text-align: center;
+    font-size: 36px;
+    font-family: 'Raleway';
+    color: #2F3676;
+}
+
+.container .photo img {
+    display: block;
+    width: 100%;
+}

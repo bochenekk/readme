@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<section class="list-view">
+    <div class="container">
+
+        <h2>{{ title }}</h2>
+
+        {% if authors_list %}
+
+            <ul class="item-list">
+            {% for author in authors_list %}
+                <li><a href="{% url 'books:author-details' author.pk %}">{{ author }}</a></li>
+            {% endfor %}
+            </ul>
+
+        {% else %}
+        <p>No Authors</p>
+
+        {% endif %}
+
+    </div>
+</section>
+{% endblock %}

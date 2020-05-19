@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if object_list %}
+<p>Your reviews:</p>
+
+
+<table>
+    <tr>
+        <th>Review</th>
+        <th>Book</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for review in object_list %}
+    <tr>
+        <td>{{ review.title }}</td>
+        <td>{{ review.book }}</td>
+        <td>{{ review.get_state_display }}</td>
+        <td>
+            {% if review.state == 'draft' %}
+                <a href="{% url 'reviews:edit-book-review' review.book.pk review.pk %}">Edit</a>
+
+                {% if request.user.is_authenticated %}
+                    <form method='post' action="{% url 'reviews:publish-book-review' review.book.id review.id %}">
+                        {% csrf_token %}
+                        <!-- {{ form }} -->
+                        <input type="submit" value="Publish">
+                    </form>
+                {% endif %}
+            {% endif %}
+
+        </td>
+    {% endfor %}
+    </tr>
+</table>
+{% else %}
+<p>No added reviews.</p>
+{% endif %}
+
+
+{% endblock %}

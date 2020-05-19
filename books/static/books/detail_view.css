@@ -1,0 +1,40 @@
+.detail-view {
+    margin: 50px 0;
+    font-family: 'Roboto';
+}
+
+.detail-view .container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-view h2 {
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 24px;
+    color: #4E4268;
+}
+
+.detail-view .name {
+    text-align: center;
+    font-family: 'Raleway';
+    font-size: 18px;
+    color: #4E4268;
+}
+
+.detail-view table tr th {
+    /* display: block; */
+    padding: 15px 30px 0;
+    margin: 15px 30px 0 0;
+    text-align: right;
+    color: #8991DC;
+}
+
+.detail-view table tr td {
+    /* display: block; */
+    padding: 15px 0 0;
+    margin: 15px 0 0;
+    color: #4E4268;
+}

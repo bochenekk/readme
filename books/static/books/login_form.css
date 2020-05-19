@@ -1,0 +1,50 @@
+.login-form {
+    position: fixed;
+    width: 400px;
+    height: 200px;
+    top: 140px;
+    border-radius: 10px;
+    background-color: #C1DEE2;
+    z-index: 3000;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form table {
+    margin: 25px 0 0;
+    background-color: #C1DEE2;
+    width: 70%;
+}
+
+.login-form table .label {
+    color: #FFF;
+    font-family: 'Raleway';
+}
+
+.login-form table .field input {
+
+    border: none;
+    background-color: #FFF;
+    outline: none;
+    height: 22px;
+    padding: 0 15px;
+    font-family: 'Roboto';
+}
+
+.login-form .login-button {
+    margin: 30px 0;
+    border: none;
+    padding: 0;
+    height: 30px;
+    width: 70%;
+    background-color: #158DA1;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    color: #FFF;
+}

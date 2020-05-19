@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if form.errors %}
+        <strong>Error:</strong> Your username and password didn't match.
+    {% endif %}
+
+    <form class="login-form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td class="label">{{ form.username.label_tag }}</td>
+            <td class="field">{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td class="label">{{ form.password.label_tag }}</td>
+            <td class="field">{{ form.password }}</td>
+        </tr>
+        </table>
+        <input class="login-button" type="submit" value="login">
+        <input type="hidden" name="next" value="{% url 'books:index' %}">
+    </form>
+
+{% endblock %}

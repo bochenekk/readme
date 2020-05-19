@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+
+{% if request.user.is_authenticated %}
+<form method='post' action="{% url 'reviews:publish-book-review' object.book.id object.id %}">
+{% csrf_token %}
+{{ form }}
+<input type="submit" value="Publish">
+</form>
+{% endif %}
+
+{% endblock %}

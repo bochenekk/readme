@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load comments %}
+
+{% block content %}
+
+<section class="detail-view">
+<div class="container">
+
+<h2>Details of book {{ book.title }}</a></h2>
+<p>Author: <a href="{% url 'books:author-details' object.author.pk %}">{{ book.author }}</a></p>
+
+{% if request.user.is_authenticated %}
+<form method="POST">
+    <!-- domyślnie action przekierowuje do tej samej strony na której jest -->
+    {% csrf_token %}
+    {{ form }}
+    <!-- {{ form.grade }} -->
+    <input type="submit" value="Rate">
+</form>
+
+<a href="{% url 'reviews:add-book-review' object.pk %}">Add book review</a>
+{% endif %}
+
+<p>Average rating: {{ avg_grades.average|floatformat:2|default:"&mdash;" }} /({{ avg_grades.count}})</p>
+
+<table>
+<tr>
+    <th>Title</th>
+    <td>{{ book.title }}</td>
+</tr>
+<tr>
+    <th>Author</th>
+    <td>{{ book.author }}</td>
+</tr>
+<tr>
+    <th>Category</th>
+    <td>{{ book.get_categories }}</td>
+</tr>
+<tr>
+    <th>Number of pages</th>
+    <td>{{ book.pages }}</td>
+</tr>
+<tr>
+    <th>Description</th>
+    <td>{{ book.description }}</td>
+</tr>
+</table>
+
+
+<div><img src="{{ book.cover.url }}" alt="Book Cover {{ book.title }}"></div>
+
+<hr>
+<h3>Reviews</h3>
+<ul>
+    {% for review in object.review_set.published %}
+    <li>{{ review }}</li>
+    {% endfor %}
+</ul>
+<h3>Comments</h3>
+{% render_comment_form for book %}
+{% render_comment_list for book %}
+
+</div>
+</section>
+
+{% endblock %}
